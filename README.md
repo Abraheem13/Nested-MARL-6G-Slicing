@@ -131,15 +131,6 @@ Better option -- zip the whole `results/` + `paper_figures/` and send them.
 - Nested-MARL rates: `alpha_l0=1e-4, alpha_l1=5e-4, alpha_l2=2e-3` (set inside `agents/nested_marl.py`)
 - Drift: `medium_period=15, slow_period=50, continuous=True` (`drift/schedulers.py`)
 
-## Paper plan (once results are in)
 
-1. Abstract + Intro + CFP alignment with agentic AI / zero-touch / AMRM bullets
-2. Related work: MARL for 6G, continual/nested learning, zero-touch orchestration
-3. System model: multi-timescale non-stationary Markov game
-4. Nested-MARL algorithm + pseudocode
-5. Theorem: two-timescale convergence bound (proof sketch via Borkar)
-6. Experimental results: learning curves, per-slice SLA, ablations, severity sweep
-7. Discussion: implications for 6G deployment, limitations
-8. Conclusion
 # Nested-MARL-6G-Slicing
 # Nested-MARL-6G-Slicing
