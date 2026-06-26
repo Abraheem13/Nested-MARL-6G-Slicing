@@ -1,7 +1,7 @@
 # Nested-MARL for 6G Adaptive Multi-Agent Resource Management
 
-**Target venue:** IEEE OJCOMS Special Issue on Multimodal and Multi-Agent Systems in 6G Networks
-**Deadline:** 31 May 2026
+** venue:** IEEE OJCOMS on Multimodal and Multi-Agent Systems in 6G Networks
+
 
 ## What's in here
 
