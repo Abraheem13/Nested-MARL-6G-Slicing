@@ -5,7 +5,7 @@
 Official implementation for:
 
 > **Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees**  
-> R. A. R. Ejaz, F. Iradat, and W. Iqbal  
+> Abraheem Rashid, F. Iradat, and W. Iqbal etc 
 > *IEEE Open Journal of the Communications Society (IEEE OJCOMS)*
 
 This repository provides the simulation environment, training code, pre-computed experimental results, and figure-generation scripts used in the paper.
