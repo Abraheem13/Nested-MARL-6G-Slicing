@@ -6,8 +6,8 @@ Executes the full experimental matrix in series:
     drifts:   multi (main), stationary (ablation)
     seeds:    0, 1, 2, 3, 4
 
-This mirrors what you'd do with a shell for-loop but gives a single
-Python process, consistent logging, and an estimated-time-remaining printout.
+Provides a single Python entry point with consistent logging and progress
+reporting for the full experimental matrix.
 
 Approx runtime on a laptop (Apple M-series or similar):
     - 150 episodes of horizon 200 per run = ~1-2 min per run

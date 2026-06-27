@@ -1,16 +1,14 @@
 """
-Full-paper experiment runner.
+Core experiment runner for the main paper results.
 
-Runs everything the paper needs, in order of importance:
+Runs the primary experimental matrix in three phases:
 
-    Phase 1 -- Finish main comparison (nested seed 9)           (~2 min)
-    Phase 2 -- Ablations at severity 1.5, seeds 0-4             (~30 min)
-    Phase 3 -- Severity sweep at seeds 0-2, sev in {0.5, 1.0, 2.0}  (~30 min)
+    Phase 1 -- Nested-MARL at severity 1.5, seeds 0-9
+    Phase 2 -- Ablations at severity 1.5, seeds 0-4
+    Phase 3 -- Severity sweep at seeds 0-2, severity in {0.5, 1.0, 2.0}
 
-Total: ~60-65 minutes on a laptop CPU.
-
-You can interrupt at any phase with Ctrl-C; already-completed runs are saved
-and skipped on re-run (idempotent).
+Estimated runtime: ~60 minutes on a laptop CPU. Already-completed runs are
+skipped on re-run (idempotent).
 """
 from __future__ import annotations
 
@@ -54,7 +52,7 @@ def run_if_missing(method, severity, seed):
 def main():
     t0 = time.time()
     print("=" * 72)
-    print("PHASE 1 -- Finish main Nested-MARL seeds at severity 1.5")
+    print("PHASE 1 -- Nested-MARL at severity 1.5, seeds 0-9")
     print("=" * 72)
     for seed in range(10):
         run_if_missing("nested", 1.5, seed)
@@ -76,7 +74,7 @@ def main():
 
     print("\n" + "=" * 72)
     print(f"All phases complete in {(time.time()-t0)/60:.1f} minutes.")
-    print("Now run:  python3 plots.py")
+    print("Now run:  python plots.py")
     print("=" * 72)
 
 

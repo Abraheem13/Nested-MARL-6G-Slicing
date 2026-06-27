@@ -1,26 +1,21 @@
 """
-Resubmission experiment runner.
+Extended experiment runner.
 
-Adds exactly the runs the reviewers and the Associate Editor asked for, on top
-of the existing published results in results/. Idempotent: already-completed
-runs are skipped, so you can interrupt and resume.
+Runs supplementary experiments on top of the core results in ``results/``.
+Already-completed runs are skipped, so execution is idempotent and resumable.
 
-New experiments
----------------
-  Phase A -- New baselines at kappa=1.5 (R2.3, R1.5, AE):
-             MAPPO (CTDE) and EWC-IPPO (continual learning), seeds 0-9.
-  Phase B -- Scaling + overhead (R1.4/R2.4 + R1.3/R1.7 + AE):
-             N in {6, 10} x S in {3, 5}, methods {ippo, mappo, nested},
-             seeds 0-4. (N=3,S=3 already exists.)
-  Phase C -- Severity sweep lifted to n=10 (fixes the n=3 soft spot):
-             kappa in {0.5, 1.0, 2.0}, methods {ippo, nested}, seeds 3-9
-             (seeds 0-2 already exist; kappa=1.5 already has n=10).
+Phases
+------
+  Phase A -- Additional baselines (MAPPO, EWC-IPPO) at severity 1.5, seeds 0-9.
+  Phase B -- Scaling study: N in {6, 10} x S in {3, 5}, seeds 0-4.
+  Phase C -- Severity sweep at N=10: severity in {0.5, 1.0, 2.0}, seeds 3-9.
 
-Estimated total on a laptop CPU: ~3-5 hours. Run overnight or in chunks:
-  python3 run_resubmission_experiments.py --phase A
-  python3 run_resubmission_experiments.py --phase B
-  python3 run_resubmission_experiments.py --phase C
-  python3 run_resubmission_experiments.py --phase all
+Estimated runtime on a laptop CPU: 3-5 hours.
+
+Usage::
+
+    python run_extended_experiments.py --phase A
+    python run_extended_experiments.py --phase all
 """
 from __future__ import annotations
 import argparse
@@ -63,7 +58,7 @@ def run_if_missing(method, severity, seed, N=3, S=3):
 
 def phase_A():
     print("\n" + "=" * 72)
-    print("PHASE A -- New baselines (MAPPO, EWC-IPPO) at kappa=1.5, seeds 0-9")
+    print("PHASE A -- Baselines (MAPPO, EWC-IPPO) at severity 1.5, seeds 0-9")
     print("=" * 72)
     for seed in range(10):
         for method in ("mappo", "ewc_ippo"):
@@ -72,14 +67,13 @@ def phase_A():
 
 def phase_B():
     print("\n" + "=" * 72)
-    print("PHASE B -- Scaling + overhead: N in {6,10} x S in {3,5}, seeds 0-4")
+    print("PHASE B -- Scaling: N in {6,10} x S in {3,5}, seeds 0-4")
     print("=" * 72)
     for N in (6, 10):
         for S in (3, 5):
             for method in ("ippo", "mappo", "nested"):
                 for seed in range(5):
                     run_if_missing(method, 1.5, seed, N=N, S=S)
-    # also S=5 at N=3 for a clean slice-only scaling axis
     for method in ("ippo", "mappo", "nested"):
         for seed in range(5):
             run_if_missing(method, 1.5, seed, N=3, S=5)
@@ -87,7 +81,7 @@ def phase_B():
 
 def phase_C():
     print("\n" + "=" * 72)
-    print("PHASE C -- Severity sweep to n=10: kappa in {0.5,1.0,2.0}, seeds 3-9")
+    print("PHASE C -- Severity sweep at N=10: severity in {0.5,1.0,2.0}, seeds 3-9")
     print("=" * 72)
     for sev in (0.5, 1.0, 2.0):
         for seed in range(3, 10):
@@ -106,7 +100,7 @@ def main():
         phase_B()
     if args.phase in ("C", "all"):
         phase_C()
-    print(f"\nDone in {(time.time()-t0)/60:.1f} min. Now run: python3 analyze_resubmission.py")
+    print(f"\nDone in {(time.time()-t0)/60:.1f} min. Run: python analyze_results.py")
 
 
 if __name__ == "__main__":

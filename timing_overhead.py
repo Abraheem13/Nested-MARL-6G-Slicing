@@ -1,12 +1,9 @@
 """
 Controlled compute-overhead timing.
 
-The per-seed wall_time stored during the big sweep is unreliable for reporting
-compute cost: runs were executed concurrently / with warm-up, so s/ep there is
-noisy (e.g. an IPPO cell can spuriously read higher than MAPPO, which is
-impossible structurally). This script times every method back-to-back in a
-single quiet process, median of repeats, so the paper's overhead numbers are
-defensible.
+Reports defensible per-episode compute cost by timing each method back-to-back
+in a single process (median over repeated short runs), rather than relying on
+wall-clock times from concurrent batch sweeps.
 
 It reports, per (N, S, method):
   * params per agent (and centralised-critic params for MAPPO)

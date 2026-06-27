@@ -1,12 +1,11 @@
 """
 MAPPO: Multi-Agent PPO with a centralised critic (CTDE).
 
-This is the strongest, most directly comparable modern MARL baseline and the
-first one Reviewer 2 named. It shares the actor architecture, PPO update,
-hyperparameters, and GAE with IPPO / Nested-MARL so the comparison isolates
-the *training paradigm* (centralised vs. decentralised critic), not tuning.
+Strong CTDE baseline that shares the actor architecture, PPO update,
+hyperparameters, and GAE with IPPO and Nested-MARL so comparisons isolate
+the training paradigm (centralised vs. decentralised critic), not tuning.
 
-Key contrast for the paper's scaling / overhead argument:
+Key contrast for scaling and overhead analysis:
     * MAPPO is CTDE: the centralised critic consumes the GLOBAL state
       (concatenation of all agents' observations). It therefore incurs an
       inter-agent communication cost that grows with the number of agents N.

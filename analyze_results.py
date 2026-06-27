@@ -1,10 +1,15 @@
 """
-Resubmission analysis: produces every table the response letter needs from the
-JSON files in results/, including the new baselines, scaling/overhead, the
-n=10 severity sweep, and significance tests with multiple-comparison correction.
+Results analysis for extended experiments.
 
-Run after the experiments:
-  python3 analyze_resubmission.py
+Aggregates JSON logs in ``results/`` into summary tables covering:
+  - Headline performance across all methods
+  - Paired significance tests with Holm correction
+  - Severity sweep comparisons
+  - Scaling and communication-overhead statistics
+
+Usage::
+
+    python analyze_results.py
 """
 from __future__ import annotations
 import glob
@@ -24,7 +29,6 @@ def collect(method, severity=1.5, N=3, S=3, metric="episode_reward"):
     ns_tag = f"_N{N}_S{S}" if (N != 3 or S != 3) else ""
     pat = f"{RES}/{method}_drift-multi{sev_tag}{ns_tag}_seed*.json"
     files = sorted(glob.glob(pat))
-    # exclude scaling files when we asked for base config
     if ns_tag == "":
         files = [f for f in files if "_N" not in f.split("seed")[0]]
     return [load_curve(f, metric) for f in files]
@@ -52,19 +56,19 @@ def holm(pvals):
 
 
 def table_headline():
-    print("\n=== HEADLINE + NEW BASELINES (kappa=1.5) ===")
+    print("\n=== HEADLINE + BASELINES (severity=1.5) ===")
     print(f"{'method':22s}{'n':>3s}{'first40':>9s}{'all80':>8s}{'last20':>8s}")
     for m in ["ippo", "mappo", "ewc_ippo", "nested_no_timescale",
               "nested_two_level", "nested_no_ema", "nested"]:
         c = collect(m)
         if not c:
-            print(f"{m:22s}  (no results yet)"); continue
+            print(f"{m:22s}  (no results)"); continue
         print(f"{m:22s}{len(c):>3d}{win(c,0,40).mean():>9.2f}"
               f"{win(c,0,80).mean():>8.2f}{win(c,60,80).mean():>8.2f}")
 
 
 def table_significance():
-    print("\n=== SIGNIFICANCE: Nested vs each baseline (paired permutation, Holm) ===")
+    print("\n=== SIGNIFICANCE: Nested-MARL vs baselines (paired permutation, Holm) ===")
     nested = collect("nested")
     for base in ["ippo", "mappo", "ewc_ippo"]:
         b = collect(base)
@@ -75,22 +79,22 @@ def table_significance():
             obs, p = paired_perm(win(nested, lo, hi), win(b, lo, hi))
             tests.append((name, obs)); pv.append(p)
         adj = holm(pv)
-        print(f"  Nested vs {base}:")
+        print(f"  Nested-MARL vs {base}:")
         for (name, obs), p, pa in zip(tests, pv, adj):
             sig = " *" if pa < 0.05 else ""
             print(f"    {name:9s} delta={obs:+.2f}  p={p:.3f}  p_holm={pa:.3f}{sig}")
 
 
 def table_severity():
-    print("\n=== SEVERITY SWEEP (first-40 reward), n up to 10 ===")
-    print(f"{'kappa':>6s}{'n':>4s}{'IPPO':>8s}{'Nested':>8s}{'delta':>8s}{'pct':>7s}{'p':>8s}")
+    print("\n=== SEVERITY SWEEP (first-40 reward) ===")
+    print(f"{'severity':>8s}{'n':>4s}{'IPPO':>8s}{'Nested':>8s}{'delta':>8s}{'pct':>7s}{'p':>8s}")
     for k in [0.5, 1.0, 1.5, 2.0]:
         ci, cn = collect("ippo", k), collect("nested", k)
         if not ci or not cn:
             continue
         a, b = win(cn, 0, 40), win(ci, 0, 40)
         obs, p = paired_perm(a, b)
-        print(f"{k:>6.1f}{min(len(ci),len(cn)):>4d}{b.mean():>8.2f}{a.mean():>8.2f}"
+        print(f"{k:>8.1f}{min(len(ci),len(cn)):>4d}{b.mean():>8.2f}{a.mean():>8.2f}"
               f"{obs:>+8.2f}{100*obs/b.mean():>+6.1f}%{p:>8.3f}")
 
 
@@ -111,7 +115,7 @@ def table_scaling():
                 d0 = json.load(open(files[0]))
                 params = d0.get("params_per_agent")
                 if params is None:
-                    params = "11024"  # standard 64x64 actor-critic per agent
+                    params = "11024"
                 comm = d0.get("comm_msgs_per_step", 0)
                 sep = d0.get("wall_time", 0) / max(1, len(d0["metrics"]["episode_reward"]))
                 print(f"{N:>3d}{S:>3d}{m:>10s}{rew:>9.2f}{str(params):>9s}{comm:>10d}{sep:>8.3f}")
@@ -122,7 +126,7 @@ def main():
     table_significance()
     table_severity()
     table_scaling()
-    print("\nDone. Paste these numbers back and we draft the response letter.")
+    print("\nDone.")
 
 
 if __name__ == "__main__":

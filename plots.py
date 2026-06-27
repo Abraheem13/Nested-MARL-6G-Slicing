@@ -50,8 +50,8 @@ METHOD_COLORS = {
 }
 
 METHOD_LABELS = {
-    "nested":               "Nested-MARL (ours)",
-    "ippo":                 "IPPO (baseline)",
+    "nested":               "Nested-MARL",
+    "ippo":                 "IPPO",
     "nested_no_ema":        "Nested-MARL, no EMA",
     "nested_no_timescale":  "Same rate (no timescale sep.)",
     "nested_two_level":     "Nested-MARL, 2 timescales",

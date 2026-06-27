@@ -1,11 +1,9 @@
 """
 EWC-IPPO: Independent PPO with online Elastic Weight Consolidation.
 
-This is the continual-learning baseline. The paper frames Nested-MARL in
-continual-learning terms (catastrophic forgetting, continuum memory), so a
-reviewer reasonably expects a comparison against a standard continual-learning
-mitigation. EWC (Kirkpatrick et al., 2017) is the canonical choice and is
-already cited in the manuscript.
+Continual-learning baseline for comparison with Nested-MARL. EWC
+(Kirkpatrick et al., 2017) penalises deviation from consolidated parameters
+using a diagonal Fisher information estimate.
 
 Online EWC: because the MTNS-MG has no explicit task boundaries, we consolidate
 periodically (every `ewc_consolidate_every` episodes), estimating a diagonal
