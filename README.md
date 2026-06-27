@@ -3,10 +3,9 @@
 [![Paper](https://img.shields.io/badge/IEEE-OJCOMS-blue)](https://github.com/Abraheem13/Nested-MARL-6G-Slicing)
 
 Official implementation for:
-
-> **Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees**  
-> Abraheem Rashid, F. Iradat, and W. Iqbal etc 
-> *IEEE Open Journal of the Communications Society (IEEE OJCOMS)*
+> **Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees**
+> Abraheem Rashid, Faisal Iradat, Waseem Iqbal, Ikram Syed, Khalil Khan, and Khalid Yahya.
+> *IEEE Open Journal of the Communications Society*, 2026.
 
 This repository provides the simulation environment, training code, pre-computed experimental results, and figure-generation scripts used in the paper.
 
@@ -131,11 +130,14 @@ python timing_overhead.py
 If you use this code in your research, please cite:
 
 ```bibtex
-@article{ejaz2026nestedmarl,
-  author  = {Ejaz, Raja Abraheem Rashid and Iradat, Faisal and Iqbal, Waqar},
-  title   = {Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees},
-  journal = {IEEE Open Journal of the Communications Society},
-  year    = {2026},
+@article{rashid2026nestedmarl,
+  author    = {Rashid, Abraheem and Iradat, Faisal and Iqbal, Waseem and Syed, Ikram and Khan, Khalil and Yahya, Khalid},
+  title     = {Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees},
+  journal   = {IEEE Open Journal of the Communications Society},
+  year      = {2026},
+  volume    = {},
+  pages     = {},
+  doi       = {},
   publisher = {IEEE}
 }
 ```
