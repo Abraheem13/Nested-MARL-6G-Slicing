@@ -1,0 +1,77 @@
+Copyright (c) 2026 Abraheem Rashid and co-authors. All Rights Reserved.
+
+Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management
+in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees
+
+================================================================================
+NOTICE: THIS IS NOT OPEN SOURCE SOFTWARE
+================================================================================
+
+This repository and the associated source code, datasets, experimental logs,
+figures, and documentation (collectively, the "Work") are the proprietary
+property of the copyright holders. All rights are reserved.
+
+1. NO GRANT OF RIGHTS
+
+   No license, express or implied, is granted to any person or entity to use,
+   copy, reproduce, modify, adapt, merge, publish, distribute, sublicense,
+   sell, train machine learning models upon, or create derivative works from
+   the Work, in whole or in part, by any means.
+
+   The presence of this repository in a public location does not constitute a
+   grant of any right to the Work.
+
+2. ACCESS BY REQUEST
+
+   Permission to access and use the Work may be granted on a case-by-case
+   basis, at the sole discretion of the copyright holders, for non-commercial
+   academic research and reproducibility verification.
+
+   Requests must be submitted by email to:
+
+       2546393@brunel.ac.uk
+
+   Any permission granted is:
+     (a) personal to the named recipient and non-transferable;
+     (b) non-exclusive and revocable at any time without cause;
+     (c) limited to the stated non-commercial academic purpose; and
+     (d) conditional upon appropriate citation of the associated publication
+         in any resulting work.
+
+   Recipients may not forward, mirror, republish, or otherwise redistribute
+   the Work to any third party. Third parties must submit their own request.
+
+3. COMMERCIAL USE
+
+   Commercial use of any kind is prohibited without a separate written
+   licensing agreement with the copyright holders.
+
+4. CITATION REQUIREMENT
+
+   Any publication, presentation, or product that relies upon the Work must
+   cite the associated publication:
+
+       A. Rashid, F. Iradat, W. Iqbal, I. Syed, K. Khan, and K. Yahya,
+       "Nested Multi-Agent Reinforcement Learning for Adaptive Resource
+       Management in 6G Network Slicing: A Multi-Timescale Framework with
+       Convergence Guarantees," IEEE Open Journal of the Communications
+       Society, 2026.
+
+5. NO WARRANTY
+
+   THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+   OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+   ARISING FROM, OUT OF, OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER
+   DEALINGS IN THE WORK.
+
+6. RESERVATION
+
+   Any use not expressly permitted in writing by the copyright holders is
+   prohibited and reserved.
+
+================================================================================
+For access requests and licensing enquiries: 2546393@brunel.ac.uk
+================================================================================
