@@ -8,7 +8,8 @@ Official repository for:
 
 > **Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees**
 > Abraheem Rashid, Faisal Iradat, Waseem Iqbal, Ikram Syed, Khalil Khan, and Khalid Yahya.
-> *IEEE Open Journal of the Communications Society*, 2026.
+> *IEEE Open Journal of the Communications Society*, vol. 7, pp. 7624–7640, 2026.
+> DOI: [10.1109/OJCOMS.2026.3708409](https://doi.org/10.1109/OJCOMS.2026.3708409)
 
 ---
 
@@ -110,10 +111,10 @@ If you reference this work, please cite:
   author    = {Rashid, Abraheem and Iradat, Faisal and Iqbal, Waseem and Syed, Ikram and Khan, Khalil and Yahya, Khalid},
   title     = {Nested Multi-Agent Reinforcement Learning for Adaptive Resource Management in 6G Network Slicing: A Multi-Timescale Framework with Convergence Guarantees},
   journal   = {IEEE Open Journal of the Communications Society},
+  volume    = {7},
+  pages     = {7624--7640},
   year      = {2026},
-  volume    = {},
-  pages     = {},
-  doi       = {},
+  doi       = {10.1109/OJCOMS.2026.3708409},
   publisher = {IEEE}
 }
 ```
